@@ -4,7 +4,7 @@
 \alias{myconstr}
 \title{myconstr: A constructor function for two-sample t-tests}
 \usage{
-myconstr(x, y, alpha)
+myconstr(x, y, alpha, method = c("equal_var", "welch", "paired"))
 }
 \arguments{
 \item{x}{A numeric vector of data for the first sample.}
@@ -12,6 +12,8 @@ myconstr(x, y, alpha)
 \item{y}{A numeric vector of data for the second sample.}
 
 \item{alpha}{A numeric value representing the error level (e.g., 0.05 for a 95% confidence interval).}
+
+\item{method}{A character string specifying the t-test method: "equal_var", "welch", or "paired".}
 }
 \value{
 An object of class "Rttest" containing the following elements:
@@ -20,6 +22,7 @@ An object of class "Rttest" containing the following elements:
   \item{alpha}{The specified alpha level.}
   \item{conf_interval}{The confidence interval of the difference in means.}
   \item{pvalue}{The p-value of the t-test.}
+  \item{method}{The t-test method used: "equal_var", "welch", or "paired".}
 }
 }
 \description{
@@ -33,6 +36,6 @@ set.seed(23)
 y <- rnorm(30, 3, 2)
 alpha <- 0.05
 
-obj <- myconstr(x = x, y = y, alpha = 0.05)
+obj <- myconstr(x = x, y = y, alpha = 0.05, method = "equal_var")
 print(obj)
 }
